@@ -1,0 +1,28 @@
+l: Information
+t: info
+q: Cette expérience se base sur des enregistrements sonores. Il est recommandé de la passer dans un environnement calme avec un casque si possible, et une souris ou un pad.
+
+l: Information2
+t: info
+q: Vous allez entendre des voyelles de type [e] ou [œ] : votre but sera de choisir parmi trois types de phonation en indiquant votre degré de certitude. Vous pourrez répéter le stimulus autant de fois que nécessaire.
+
+l: Information3
+t: info
+q: À tout moment il vous est possible de faire une pause, en effet vous avez un quart d'heure pour répondre à chaque essai, qui se fait généralement en moins de 15 secondes.
+
+l: Niveau
+t: range
+q: Quel est votre degré d'expertise en phonétique/prosodie, ou orthophonie ?
+- {min=1,max=7,start=4,left=Aucune connaissance dans ce domaine,right=Pratique professionnelle}
+
+l: Provenance
+t: radio
+q: Comment avez-vous eu accès à ce test ?
+- J'ai reçu un lien directement de Carole Millot
+- Un de mes professeurs me l'a partagé
+- Un collègue me l'a partagé
+
+l: Test
+t: experiment
+q: Commençons le test.
+- vq

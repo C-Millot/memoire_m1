@@ -1,0 +1,4037 @@
+options
+  mouse on
+
+bitmaps
+  c_01_1
+  c_01_2
+  c_02
+  c_03_1
+  c_03_2
+  c_04
+  c_05
+  c_06_1
+  c_06_2
+  c_08_1
+  c_08_2
+  c_10
+  c_11
+  c_12
+  c_13
+  c_14
+  c_16
+  c_19
+  c_20
+  c_21
+  c_24_1
+  c_24_2
+  m_01
+  m_02
+  m_03_1
+  m_03_2
+  m_04
+  m_05_1
+  m_05_2
+  m_07_1
+  m_07_2
+  m_08_1
+  m_08_2
+  m_09_1
+  m_09_2
+  m_10
+  m_11_1
+  m_11_2
+  m_12_1
+  m_12_2
+  m_14
+  m_15_1
+  m_15_2
+  m_16
+  m_17
+  m_18_1
+  m_18_2
+  m_19
+  m_20_1
+  m_20_2
+  m_22_1
+  m_22_2
+  m_23
+  m_24
+  s_01_1
+  s_01_2
+  s_04
+  s_05
+  s_06
+  s_07
+  s_08_1
+  s_08_2
+  s_10_1
+  s_10_2
+  s_11_1
+  s_11_2
+  s_13
+  s_15
+  s_16
+  s_21
+  s_22
+  s_23
+  aa_c_1
+  aa_c_2
+  aa_c_3
+  aa_m_1
+  aa_m_2
+  aa_m_3
+  aa_s_1
+  aa_s_2
+  aa_s_3
+  aa_s_4
+  craq
+  mod
+  souffl
+  retry
+  rond1
+  rond2
+  rond3
+  rond4
+  rond5
+
+sounds
+  c_01_1
+  c_01_2
+  c_02
+  c_03_1
+  c_03_2
+  c_04
+  c_05
+  c_06_1
+  c_06_2
+  c_08_1
+  c_08_2
+  c_10
+  c_11
+  c_12
+  c_13
+  c_14
+  c_16
+  c_19
+  c_20
+  c_21
+  c_24_1
+  c_24_2
+  m_01
+  m_02
+  m_03_1
+  m_03_2
+  m_04
+  m_05_1
+  m_05_2
+  m_07_1
+  m_07_2
+  m_08_1
+  m_08_2
+  m_09_1
+  m_09_2
+  m_10
+  m_11_1
+  m_11_2
+  m_12_1
+  m_12_2
+  m_14
+  m_15_1
+  m_15_2
+  m_16
+  m_17
+  m_18_1
+  m_18_2
+  m_19
+  m_20_1
+  m_20_2
+  m_22_1
+  m_22_2
+  m_23
+  m_24
+  s_01_1
+  s_01_2
+  s_04
+  s_05
+  s_06
+  s_07
+  s_08_1
+  s_08_2
+  s_10_1
+  s_10_2
+  s_11_1
+  s_11_2
+  s_13
+  s_15
+  s_16
+  s_21
+  s_22
+  s_23
+  aa_c_1
+  aa_c_2
+  aa_c_3
+  aa_m_1
+  aa_m_2
+  aa_m_3
+  aa_s_1
+  aa_s_2
+  aa_s_3
+  aa_s_4
+
+task train1c
+  draw off
+  show bitmap aa_c_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound aa_c_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound aa_c_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  delay 2000
+  clear screen
+  if $number_of_bitmap == 3
+    show text "Votre réponse était : voix craquée. C'est correct."  0 0 0 255 0
+  fi
+  if $number_of_bitmap == 4
+    show text "Votre réponse était : voix modale. C'est incorrect."
+    show text "La réponse était : voix craquée."  0 100 255 0 0
+  fi
+  if $number_of_bitmap == 5
+    show text "Votre réponse était : voix soufflée. C'est incorrect."
+    show text "La réponse était : voix craquée."  0 100 255 0 0
+  fi
+  delay 3000
+  clear screen
+  if $number_of_bitmap2 == 1
+    show text "Vous étiez peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 2
+    show text "Vous étiez un peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 3
+    show text "Vous étiez moyennement sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 4
+    show text "Vous étiez plutôt sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 5
+    show text "Vous étiez très sûr de votre réponse."
+  fi
+  delay 3000
+  clear screen
+
+task train2c
+  draw off
+  show bitmap aa_c_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound aa_c_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound aa_c_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  delay 2000
+  clear screen
+  if $number_of_bitmap == 3
+    show text "Votre réponse était : voix craquée. C'est correct."  0 0 0 255 0
+  fi
+  if $number_of_bitmap == 4
+    show text "Votre réponse était : voix modale. C'est incorrect."
+    show text "La réponse était : voix craquée."  0 100 255 0 0
+  fi
+  if $number_of_bitmap == 5
+    show text "Votre réponse était : voix soufflée. C'est incorrect."
+    show text "La réponse était : voix craquée."  0 100 255 0 0
+  fi
+  delay 3000
+  clear screen
+  if $number_of_bitmap2 == 1
+    show text "Vous étiez peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 2
+    show text "Vous étiez un peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 3
+    show text "Vous étiez moyennement sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 4
+    show text "Vous étiez plutôt sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 5
+    show text "Vous étiez très sûr de votre réponse."
+  fi
+  delay 3000
+  clear screen
+
+task train3c
+  draw off
+  show bitmap aa_c_3 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound aa_c_3
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound aa_c_3
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  delay 2000
+  clear screen
+  if $number_of_bitmap == 3
+    show text "Votre réponse était : voix craquée. C'est correct."  0 0 0 255 0
+  fi
+  if $number_of_bitmap == 4
+    show text "Votre réponse était : voix modale. C'est incorrect."
+    show text "La réponse était : voix craquée."  0 100 255 0 0
+  fi
+  if $number_of_bitmap == 5
+    show text "Votre réponse était : voix soufflée. C'est incorrect."
+    show text "La réponse était : voix craquée."  0 100 255 0 0
+  fi
+  delay 3000
+  clear screen
+  if $number_of_bitmap2 == 1
+    show text "Vous étiez peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 2
+    show text "Vous étiez un peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 3
+    show text "Vous étiez moyennement sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 4
+    show text "Vous étiez plutôt sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 5
+    show text "Vous étiez très sûr de votre réponse."
+  fi
+  delay 3000
+  clear screen
+
+task train1m
+  draw off
+  show bitmap aa_m_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound aa_m_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound aa_m_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  delay 2000
+  clear screen
+  if $number_of_bitmap == 3
+    show text "Votre réponse était : voix craquée. C'est incorrect."
+    show text "La réponse était : voix modale."  0 100 255 0 0
+  fi
+  if $number_of_bitmap == 4
+    show text "Votre réponse était : voix modale. C'est correct."  0 0 0 255 0
+  fi
+  if $number_of_bitmap == 5
+    show text "Votre réponse était : voix soufflée. C'est incorrect."
+    show text "La réponse était : voix modale."  0 100 255 0 0
+  fi
+  delay 3000
+  clear screen
+  if $number_of_bitmap2 == 1
+    show text "Vous étiez peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 2
+    show text "Vous étiez un peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 3
+    show text "Vous étiez moyennement sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 4
+    show text "Vous étiez plutôt sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 5
+    show text "Vous étiez très sûr de votre réponse."
+  fi
+  delay 3000
+  clear screen
+
+task train2m
+  draw off
+  show bitmap aa_m_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound aa_m_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound aa_m_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  delay 2000
+  clear screen
+  if $number_of_bitmap == 3
+    show text "Votre réponse était : voix craquée. C'est incorrect."
+    show text "La réponse était : voix modale."  0 100 255 0 0
+  fi
+  if $number_of_bitmap == 4
+    show text "Votre réponse était : voix modale. C'est correct."  0 0 0 255 0
+  fi
+  if $number_of_bitmap == 5
+    show text "Votre réponse était : voix soufflée. C'est incorrect."
+    show text "La réponse était : voix modale."  0 100 255 0 0
+  fi
+  delay 3000
+  clear screen
+  if $number_of_bitmap2 == 1
+    show text "Vous étiez peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 2
+    show text "Vous étiez un peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 3
+    show text "Vous étiez moyennement sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 4
+    show text "Vous étiez plutôt sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 5
+    show text "Vous étiez très sûr de votre réponse."
+  fi
+  delay 3000
+  clear screen
+
+task train3m
+  draw off
+  show bitmap aa_m_3 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound aa_m_3
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound aa_m_3
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  delay 2000
+  clear screen
+  if $number_of_bitmap == 3
+    show text "Votre réponse était : voix craquée. C'est incorrect."
+    show text "La réponse était : voix modale."  0 100 255 0 0
+  fi
+  if $number_of_bitmap == 4
+    show text "Votre réponse était : voix modale. C'est correct."  0 0 0 255 0
+  fi
+  if $number_of_bitmap == 5
+    show text "Votre réponse était : voix soufflée. C'est incorrect."
+    show text "La réponse était : voix modale."  0 100 255 0 0
+  fi
+  delay 3000
+  clear screen
+  if $number_of_bitmap2 == 1
+    show text "Vous étiez peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 2
+    show text "Vous étiez un peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 3
+    show text "Vous étiez moyennement sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 4
+    show text "Vous étiez plutôt sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 5
+    show text "Vous étiez très sûr de votre réponse."
+  fi
+  delay 3000
+  clear screen
+
+task train1s
+  draw off
+  show bitmap aa_s_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound aa_s_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound aa_s_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  delay 2000
+  clear screen
+  if $number_of_bitmap == 3
+    show text "Votre réponse était : voix craquée. C'est incorrect."
+    show text "La réponse était : voix soufflée."  0 100 255 0 0
+  fi
+  if $number_of_bitmap == 4
+    show text "Votre réponse était : voix modale. C'est incorrect."
+    show text "La réponse était : voix soufflée."  0 100 255 0 0
+  fi
+  if $number_of_bitmap == 5
+    show text "Votre réponse était : voix soufflée. C'est correct."  0 0 0 255 0
+  fi
+  delay 3000
+  clear screen
+  if $number_of_bitmap2 == 1
+    show text "Vous étiez peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 2
+    show text "Vous étiez un peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 3
+    show text "Vous étiez moyennement sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 4
+    show text "Vous étiez plutôt sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 5
+    show text "Vous étiez très sûr de votre réponse."
+  fi
+  delay 3000
+  clear screen
+
+task train2s
+  draw off
+  show bitmap aa_s_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound aa_s_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound aa_s_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  delay 2000
+  clear screen
+  if $number_of_bitmap == 3
+    show text "Votre réponse était : voix craquée. C'est incorrect."
+    show text "La réponse était : voix soufflée."  0 100 255 0 0
+  fi
+  if $number_of_bitmap == 4
+    show text "Votre réponse était : voix modale. C'est incorrect."
+    show text "La réponse était : voix soufflée."  0 100 255 0 0
+  fi
+  if $number_of_bitmap == 5
+    show text "Votre réponse était : voix soufflée. C'est correct."
+  fi
+  delay 3000
+  clear screen
+  if $number_of_bitmap2 == 1
+    show text "Vous étiez peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 2
+    show text "Vous étiez un peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 3
+    show text "Vous étiez moyennement sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 4
+    show text "Vous étiez plutôt sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 5
+    show text "Vous étiez très sûr de votre réponse."
+  fi
+  delay 3000
+  clear screen
+
+task train3s
+  draw off
+  show bitmap aa_s_3 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound aa_s_3
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound aa_s_3
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  delay 2000
+  clear screen
+  if $number_of_bitmap == 3
+    show text "Votre réponse était : voix craquée. C'est incorrect."
+    show text "La réponse était : voix soufflée."  0 100 255 0 0
+  fi
+  if $number_of_bitmap == 4
+    show text "Votre réponse était : voix modale. C'est incorrect."
+    show text "La réponse était : voix soufflée."  0 100 255 0 0
+  fi
+  if $number_of_bitmap == 5
+    show text "Votre réponse était : voix soufflée. C'est correct."  0 0 0 255 0
+  fi
+  delay 3000
+  clear screen
+  if $number_of_bitmap2 == 1
+    show text "Vous étiez peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 2
+    show text "Vous étiez un peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 3
+    show text "Vous étiez moyennement sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 4
+    show text "Vous étiez plutôt sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 5
+    show text "Vous étiez très sûr de votre réponse."
+  fi
+  delay 3000
+  clear screen
+
+task train4s
+  draw off
+  show bitmap aa_s_4 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound aa_s_4
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound aa_s_4
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  delay 2000
+  clear screen
+  if $number_of_bitmap == 3
+    show text "Votre réponse était : voix craquée. C'est incorrect."
+    show text "La réponse était : voix soufflée."  0 100 255 0 0
+  fi
+  if $number_of_bitmap == 4
+    show text "Votre réponse était : voix modale. C'est incorrect."
+    show text "La réponse était : voix soufflée."  0 100 255 0 0
+  fi
+  if $number_of_bitmap == 5
+    show text "Votre réponse était : voix soufflée. C'est correct."  0 0 0 255 0
+  fi
+  delay 3000
+  clear screen
+  if $number_of_bitmap2 == 1
+    show text "Vous étiez peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 2
+    show text "Vous étiez un peu sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 3
+    show text "Vous étiez moyennement sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 4
+    show text "Vous étiez plutôt sûr de votre réponse."
+  fi
+  if $number_of_bitmap2 == 5
+    show text "Vous étiez très sûr de votre réponse."
+  fi
+  delay 3000
+  clear screen
+
+task c_01_1
+  draw off
+  show bitmap c_01_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_01_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_01_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_01_2
+  draw off
+  show bitmap c_01_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_01_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_01_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_02
+  draw off
+  show bitmap c_02 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_02
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_02
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_03_1
+  draw off
+  show bitmap c_03_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_03_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_03_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_03_2
+  draw off
+  show bitmap c_03_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_03_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_03_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_04
+  draw off
+  show bitmap c_04 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_04
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_04
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_05
+  draw off
+  show bitmap c_05 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_05
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_05
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_06_1
+  draw off
+  show bitmap c_06_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_06_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_06_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_06_2
+  draw off
+  show bitmap c_06_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_06_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_06_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_08_1
+  draw off
+  show bitmap c_08_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_08_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_08_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_08_2
+  draw off
+  show bitmap c_08_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_08_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_08_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_10
+  draw off
+  show bitmap c_10 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_10
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_10
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_11
+  draw off
+  show bitmap c_11 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_11
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_11
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_12
+  draw off
+  show bitmap c_12 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_12
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_12
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_13
+  draw off
+  show bitmap c_13 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_13
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_13
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_14
+  draw off
+  show bitmap c_14 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_14
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_14
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_16
+  draw off
+  show bitmap c_16 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_16
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_16
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_19
+  draw off
+  show bitmap c_19 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_19
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_19
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_20
+  draw off
+  show bitmap c_20 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_20
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_20
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_21
+  draw off
+  show bitmap c_21 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_21
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_21
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_24_1
+  draw off
+  show bitmap c_24_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_24_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_24_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task c_24_2
+  draw off
+  show bitmap c_24_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound c_24_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound c_24_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 3
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_01
+  draw off
+  show bitmap m_01 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_01
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_01
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_02
+  draw off
+  show bitmap m_02 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_02
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_02
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_03_1
+  draw off
+  show bitmap m_03_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_03_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_03_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_03_2
+  draw off
+  show bitmap m_03_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_03_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_03_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_04
+  draw off
+  show bitmap m_04 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_04
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_04
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_05_1
+  draw off
+  show bitmap m_05_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_05_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_05_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_05_2
+  draw off
+  show bitmap m_05_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_05_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_05_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_07_1
+  draw off
+  show bitmap m_07_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_07_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_07_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_07_2
+  draw off
+  show bitmap m_07_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_07_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_07_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_08_1
+  draw off
+  show bitmap m_08_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_08_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_08_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_08_2
+  draw off
+  show bitmap m_08_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_08_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_08_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_09_1
+  draw off
+  show bitmap m_09_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_09_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_09_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_09_2
+  draw off
+  show bitmap m_09_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_09_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_09_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_10
+  draw off
+  show bitmap m_10 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_10
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_10
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_11_1
+  draw off
+  show bitmap m_11_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_11_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_11_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_11_2
+  draw off
+  show bitmap m_11_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_11_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_11_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_12_1
+  draw off
+  show bitmap m_12_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_12_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_12_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_12_2
+  draw off
+  show bitmap m_12_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_12_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_12_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_14
+  draw off
+  show bitmap m_14 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_14
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_14
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_15_1
+  draw off
+  show bitmap m_15_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_15_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_15_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_15_2
+  draw off
+  show bitmap m_15_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_15_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_15_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_16
+  draw off
+  show bitmap m_16 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_16
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_16
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_17
+  draw off
+  show bitmap m_17 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_17
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_17
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_18_1
+  draw off
+  show bitmap m_18_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_18_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_18_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_18_2
+  draw off
+  show bitmap m_18_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_18_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_18_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_19
+  draw off
+  show bitmap m_19 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_19
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_19
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_20_1
+  draw off
+  show bitmap m_20_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_20_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_20_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_20_2
+  draw off
+  show bitmap m_20_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_20_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_20_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_22_1
+  draw off
+  show bitmap m_22_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_22_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_22_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_22_2
+  draw off
+  show bitmap m_22_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_22_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_22_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_23
+  draw off
+  show bitmap m_23 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_23
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_23
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task m_24
+  draw off
+  show bitmap m_24 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound m_24
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound m_24
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 4
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_01_1
+  draw off
+  show bitmap s_01_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_01_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_01_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_01_2
+  draw off
+  show bitmap s_01_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_01_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_01_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_04
+  draw off
+  show bitmap s_04 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_04
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_04
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_05
+  draw off
+  show bitmap s_05 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_05
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_05
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_06
+  draw off
+  show bitmap s_06 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_06
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_06
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_07
+  draw off
+  show bitmap s_07 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_07
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_07
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_08_1
+  draw off
+  show bitmap s_08_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_08_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_08_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_08_2
+  draw off
+  show bitmap s_08_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_08_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_08_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_10_1
+  draw off
+  show bitmap s_10_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_10_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_10_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_10_2
+  draw off
+  show bitmap s_10_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_10_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_10_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_11_1
+  draw off
+  show bitmap s_11_1 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_11_1
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_11_1
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_11_2
+  draw off
+  show bitmap s_11_2 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_11_2
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_11_2
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_13
+  draw off
+  show bitmap s_13 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_13
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_13
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_15
+  draw off
+  show bitmap s_15 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_15
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_15
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_16
+  draw off
+  show bitmap s_16 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_16
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_16
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_21
+  draw off
+  show bitmap s_21 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_21
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_21
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_22
+  draw off
+  show bitmap s_22 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_22
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_22
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+task s_23
+  draw off
+  show bitmap s_23 0 -100
+  show bitmap retry 300 200
+  show bitmap craq -300 200
+  show bitmap mod -100 200
+  show bitmap souffl 100 200
+  sound s_23
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap under MOUSE_X MOUSE_Y
+  set $bien "correct"
+  set $mal "incorrect"
+  while $number_of_bitmap == 2
+    sound s_23
+    readmouse l 1 999999
+    set $number_of_bitmap under MOUSE_X MOUSE_Y
+  while-end
+  if $number_of_bitmap == 5
+    save TASKNAME $number_of_bitmap $bien
+  else
+    save TASKNAME $number_of_bitmap $mal
+  fi
+  delay 2000
+  clear screen
+  draw off
+  show text "Sur une échelle de 1 à 5, êtes-vous sûr de votre réponse ?"  0 -100
+  show text "Peu sûr"  -300 200
+  show text "Très sûr"  300 200
+  show bitmap rond1 -200 200
+  show bitmap rond2 -100 200
+  show bitmap rond3 0 200
+  show bitmap rond4 100 200
+  show bitmap rond5 200 200
+  draw on
+  readmouse l 1 999999
+  set $number_of_bitmap2 under MOUSE_X MOUSE_Y
+  set $number_of_bitmap2 decrease 3
+  set %nom "Likert"
+  save TASKNAME %nom $number_of_bitmap2
+  delay 2000
+  clear screen
+
+block train
+  message "Bienvenue dans ce test. Veuillez cliquer sur le texte pour continuer." mouse
+  message "Faisons d'abord un entraînement." mouse
+  message "Vous allez évaluer le type de phonation de voyelles." mouse
+  message "Vous pourrez répéter le stimulus autant que nécessaire." mouse
+  message "Veillez à ne pas cliquer sur les spectrogrammes." mouse
+  tasklist
+    train2c 1
+    train3c 1
+    train1m 1
+    train2m 1
+    train1s 1
+    train4s 1
+  end
+  message "Très bien, passons au test." mouse
+
+block test
+  tasklist
+  c_01_1 1
+  c_01_2 1
+  c_02 1
+  c_03_1 1
+  c_03_2 1
+  c_04 1
+  c_05 1
+  c_06_1 1
+  c_06_2 1
+  c_08_1 1
+  c_08_2 1
+  c_10 1
+  c_11 1
+  c_12 1
+  c_13 1
+  c_14 1
+  c_16 1
+  c_19 1
+  c_20 1
+  c_21 1
+  c_24_1 1
+  c_24_2 1
+  m_01 1
+  m_02 1
+  m_03_1 1
+  m_03_2 1
+  m_04 1
+  m_05_1 1
+  m_05_2 1
+  m_07_1 1
+  m_07_2 1
+  m_08_1 1
+  m_08_2 1
+  m_09_1 1
+  m_09_2 1
+  m_10 1
+  m_11_1 1
+  m_11_2 1
+  m_12_1 1
+  m_12_2 1
+  m_14 1
+  m_15_1 1
+  m_15_2 1
+  m_16 1
+  m_17 1
+  m_18_1 1
+  m_18_2 1
+  m_19 1
+  m_20_1 1
+  m_20_2 1
+  m_22_1 1
+  m_22_2 1
+  m_23 1
+  m_24 1
+  s_01_1 1
+  s_01_2 1
+  s_04 1
+  s_05 1
+  s_06 1
+  s_07 1
+  s_08_1 1
+  s_08_2 1
+  s_10_1 1
+  s_10_2 1
+  s_11_1 1
+  s_11_2 1
+  s_13 1
+  s_15 1
+  s_16 1
+  s_21 1
+  s_22 1
+  s_23 1
+  end
